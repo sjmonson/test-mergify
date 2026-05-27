@@ -8,6 +8,7 @@ queue_rules:
 
       # Commits
       {% for commit in commits if commit.parents|length == 1 %}
+
       ## {{ commit.sha }}
 
       {{ commit.commit_message }}
@@ -15,6 +16,10 @@ queue_rules:
 
       ---
 
+      {%- set _ = 0 -%}
+      {%- set parts = 0 -%}
+      {%- set key = 0 -%}
+      {%- set value = 0 -%}
       {%- set trailers = [] -%}
       {%- for commit in commits if commit.parents|length == 1 -%}
         {%- for line in commit.commit_message.split('\n') -%}
