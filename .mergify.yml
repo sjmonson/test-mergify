@@ -1,37 +1,9 @@
 queue_rules:
   - name: Test
+    commit_message_format:
+      title: pr-title
+      body: pr-body
+      trailers:
+        - co-authored-by
+        - approved-by
     merge_method: squash
-    commit_message_template: |
-      {{ title }} (#{{number}})
-
-      {{ body }}
-
-      # Commits
-      {% for commit in commits if commit.parents|length == 1 %}
-      ## {{ commit.sha }}
-
-      {{ commit.commit_message }}
-      {%- endfor %}
-
-      ---
-
-      {%- set trailers = [] -%}
-      {%- for commit in commits if commit.parents|length == 1 -%}
-        {%- for line in commit.commit_message.split('\n') -%}
-          {%- set line = line.strip() -%}
-          {%- if line and ':' in line -%}
-            {%- set parts = line.split(':', 1) -%}
-            {%- set key = parts[0]|trim -%}
-            {%- set value = parts[1]|trim -%}
-            {%- if key and value and key[0].isupper() and ' ' not in key -%}
-              {%- set _ = trailers.append((key, value)) -%}
-            {%- endif -%}
-          {%- endif -%}
-        {%- endfor -%}
-      {%- endfor %}
-      {% for key, value in trailers | unique | sort %}
-      {{ key }}: {{ value }}
-      {%- endfor -%}
-      {%- for user in approved_reviews_by %}
-      Approved-by: {{ user }}
-      {%- endfor -%}
