@@ -1,0 +1,9 @@
+queue_rules:
+  - name: Test
+    commit_message_format:
+      title: pr-title
+      body: pr-body
+      trailers:
+        - co-authored-by
+        - approved-by
+    merge_method: squash
