@@ -20,17 +20,17 @@ queue_rules:
         {%- for line in commit.commit_message.split('\n') -%}
           {%- set line = line.strip() -%}
           {%- if line and ':' in line -%}
-            {%- set line_parts = line.split(':', 1) -%}
-            {%- set line_key = line_parts[0]|trim -%}
-            {%- set line_value = line_parts[1]|trim -%}
-            {%- if line_key and line_value and line_key[0].isupper() and ' ' not in line_key -%}
-              {%- set _ = trailers.append((line_key, line_value)) -%}
+            {%- set parts = line.split(':', 1) -%}
+            {%- set key = parts[0]|trim -%}
+            {%- set value_1 = parts[1]|trim -%}
+            {%- if key and value_1 and key[0].isupper() and ' ' not in key -%}
+              {%- set _ = trailers.append((key, value_1)) -%}
             {%- endif -%}
           {%- endif -%}
         {%- endfor -%}
       {%- endfor %}
-      {% for key, value in trailers | unique | sort %}
-      {{ key }}: {{ value }}
+      {% for key, value_2 in trailers | unique | sort %}
+      {{ key }}: {{ value_2 }}
       {%- endfor -%}
       {%- for user in approved_reviews_by %}
       Approved-by: {{ user }}
