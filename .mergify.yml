@@ -22,15 +22,15 @@ queue_rules:
           {%- if line and ':' in line -%}
             {%- set parts = line.split(':', 1) -%}
             {%- set key = parts[0]|trim -%}
-            {%- set value_1 = parts[1]|trim -%}
-            {%- if key and value_1 and key[0].isupper() and ' ' not in key -%}
-              {%- set _ = trailers.append((key, value_1)) -%}
+            {%- set value = parts[1]|trim -%}
+            {%- if key and value and key[0].isupper() and ' ' not in key -%}
+              {%- set _ = trailers.append((key, value)) -%}
             {%- endif -%}
           {%- endif -%}
         {%- endfor -%}
       {%- endfor %}
-      {% for key, value_2 in trailers | unique | sort %}
-      {{ key }}: {{ value_2 }}
+      {% for key, value in trailers | unique | sort %}
+      {{ key }}: {{ value }}
       {%- endfor -%}
       {%- for user in approved_reviews_by %}
       Approved-by: {{ user }}
