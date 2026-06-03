@@ -8,6 +8,7 @@ queue_rules:
       - -draft
       - -closed
     merge_method: squash
+    branch_protection_injection_mode: merge
     batch_size: 1
     commit_message_format:
       title: pr-title
@@ -24,9 +25,6 @@ pull_request_rules:
       comment:
         message: |
           Hi @{{author}}, the DCO check has failed. Please click on DCO in the Checks section for instructions on how to resolve this.
-
-merge_queue:
-  branch_protection_injection_mode: merge
 
 merge_protections_settings:
   reporting_method: check-runs
