@@ -4,7 +4,7 @@ queue_rules:
       # - "#approved-reviews-by >= 1"
       - "#changes-requested-reviews-by = 0"
       - check-success = DCO
-      - "check-success = PR Styling / update-description (pull_request)"
+      - check-success = update-description
       - -draft
       - -closed
     merge_method: squash
