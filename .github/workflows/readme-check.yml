@@ -2,6 +2,9 @@ name: README Check
 
 on:
   pull_request:
+  push:
+    branches:
+      - main
 
 jobs:
   check-indicator:
