@@ -1,0 +1,11 @@
+name: Slow Test
+
+on:
+  pull_request:
+
+jobs:
+  wait-and-pass:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait 1 minute
+        run: sleep 60
