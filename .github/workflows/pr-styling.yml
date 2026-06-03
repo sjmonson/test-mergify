@@ -1,4 +1,4 @@
-name: PR Description
+name: PR Styling
 
 on:
   pull_request:
