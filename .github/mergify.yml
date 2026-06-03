@@ -13,9 +13,6 @@ queue_rules:
     commit_message_format:
       title: pr-title
       body: pr-body
-      trailers: 
-        - approved-by
-        - merged-by
 
 pull_request_rules:
   - name: comment-dco-failure
